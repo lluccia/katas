@@ -6,8 +6,9 @@ public class PlayerWithFixedChoices extends Player {
 	public int turnCount = 0;
 	
 	@Override
-	public String playerChoice() {
-		return choices[turnCount++];
+	public String choose() {
+		super.choice = choices[turnCount++];
+		return choice;
 	}
 
 }

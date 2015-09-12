@@ -1,13 +1,15 @@
 
-class Player{
+class Player {
+	
     int wins;      // # of wins
     int winTotal;
+	protected String choice;
+	
     /**
      * Randomly choose rock, paper, or scissors
      */
-    public String playerChoice()
-    {
-        String choice = "";
+    public String choose() {
+        choice = "";
         int c = (int)(Math.random()*3);
         switch(c) {
             case 0:
@@ -22,13 +24,17 @@ class Player{
         }
         return choice;
     }
-    public int setWins() 
-    {
+    
+    public int setWins() {
         int winTotal = wins++;
         return winTotal;
     }
-    public int getWins() 
-    {
-        return(wins);
+    
+    public int getWins() {
+        return wins;
+    }
+    
+    public String getChoice() {
+    	return choice;
     }
 }
