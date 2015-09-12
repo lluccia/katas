@@ -3,6 +3,12 @@ class Player {
 	
     int wins;      // # of wins
 	protected String choice;
+	private String name;
+	
+	
+	public Player(String name) {
+		this.name = name;
+	}
 	
     /**
      * Randomly choose rock, paper, or scissors
@@ -35,4 +41,8 @@ class Player {
     public String getChoice() {
     	return choice;
     }
+
+	public String getName() {
+		return name;
+	}
 }

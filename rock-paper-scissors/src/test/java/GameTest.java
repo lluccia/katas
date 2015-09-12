@@ -13,8 +13,8 @@ public class GameTest {
 
 	@Test
 	public void testGame1() throws IOException {
-		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices();
-		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices();
+		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
+		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
 		p1.choices = new String[] {"rock", "rock", "scissors", "paper", "paper", "rock", "paper", "rock", "scissors"};
 		p2.choices = new String[] {"scissors", "rock", "rock", "rock", "rock", "scissors", "paper", "rock", "paper"};
 		
@@ -36,8 +36,8 @@ public class GameTest {
 	
 	@Test
 	public void testGame2() throws IOException {
-		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices();
-		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices();
+		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
+		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
 		p1.choices = new String[] {"paper", "scissors", "paper", "rock", "scissors"};
 		p2.choices = new String[] {"rock", "rock", "scissors", "paper", "rock"};
 		

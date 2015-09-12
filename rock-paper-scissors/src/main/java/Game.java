@@ -5,8 +5,6 @@ public class Game
 	private static String p1Choice;
 	private static String p2Choice;
 	private static int roundsPlayed;
-	private static int p1Wins;
-	private static int p2Wins;
 	private static int draw;
 
 	public static void setPlayers(Player p1, Player p2) {
@@ -42,34 +40,33 @@ public class Game
 	private static void printRoundInfo() {
 		System.out.println("***** Round: " + roundsPlayed + " *********************\n");
 		System.out.println("Number of Draws: " + draw + "\n");
-		System.out.println("Player 1: " + p1.getChoice() + "\t Player 1 Total Wins: " + p1.getWins());
-		System.out.println("Player 2: " + p2.getChoice()+ "\t Player 2 Total Wins: " + p2.getWins());
+		System.out.println("Player " + p1.getName() + ": " + p1.getChoice() + "\t Player " + p1.getName() + " Total Wins: " + p1.getWins());
+		System.out.println("Player " + p2.getName() + ": " + p2.getChoice()+ "\t Player " + p2.getName() + " Total Wins: " + p2.getWins());
 	}
 
 	private static void checkRoundWin() {
-		if(p1.getChoice().equals(p2.getChoice())) {
+		Player roundWinner = getRoundWinner(p1, p2);
+		
+		if (roundWinner == null) {
 		    draw++;
 		    System.out.println("\n\t\t\t Draw \n");
-		} else if((p1Choice.equals("rock")) && (p2Choice.equals("paper"))) {
-		    System.out.println("Player 2 Wins");
-		    p2.addWin();
-		} else if((p1Choice.equals("paper")) && (p2Choice.equals("scissors"))) {
-			p2.addWin();
-			System.out.println("Player 2 Wins");
-		} else if((p1Choice.equals("scissors")) && (p2Choice.equals("rock"))) {
-		    p2.addWin();
-		    System.out.println("Player 2 Wins");
-		} else if((p1Choice.equals("rock")) && (p2Choice.equals("scissors"))) {
-			p1.addWin();
-			System.out.println("Player 1 Wins");
-		} else if((p1Choice.equals("paper")) && (p2Choice.equals("rock"))) {
-		    p1.addWin();
-		    System.out.println("Player 1 Wins");
-		} else if((p1Choice.equals("scissors")) && (p2Choice.equals("paper"))) {
-		    p1.addWin();
-		    System.out.println("Player 1 Wins");
+		} else {
+			roundWinner.addWin();
+			System.out.println("Player " + roundWinner.getName() + " Wins");
 		}
-
+	}
+	
+	private static Player getRoundWinner(Player p1, Player p2) {
+		if((p2Choice.equals("rock")) && (p1Choice.equals("scissors"))
+				|| (p2Choice.equals("paper")) && (p1Choice.equals("rock"))
+				|| (p2Choice.equals("scissors")) && (p1Choice.equals("paper"))) {
+		    return p2;
+		} else if((p1Choice.equals("rock")) && (p2Choice.equals("scissors"))
+				|| (p1Choice.equals("paper")) && (p2Choice.equals("rock"))
+				|| (p1Choice.equals("scissors")) && (p2Choice.equals("paper"))) {
+			return p1;
+		}
+		return null;
 	}
 	
 	private static boolean gameEnded() {
