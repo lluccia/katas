@@ -1,0 +1,79 @@
+***** Round: 0 *********************
+
+Number of Draws: 0
+
+Player 1: rock	 Player 1 Total Wins: 0
+Player 2: scissors	 Player 2 Total Wins: 0
+Player 1 Wins
+
+***** Round: 1 *********************
+
+Number of Draws: 0
+
+Player 1: rock	 Player 1 Total Wins: 0
+Player 2: rock	 Player 2 Total Wins: 0
+
+			 Draw 
+
+
+***** Round: 2 *********************
+
+Number of Draws: 1
+
+Player 1: scissors	 Player 1 Total Wins: 0
+Player 2: rock	 Player 2 Total Wins: 0
+Player 2 Wins
+
+***** Round: 3 *********************
+
+Number of Draws: 1
+
+Player 1: paper	 Player 1 Total Wins: 0
+Player 2: rock	 Player 2 Total Wins: 0
+Player 1 Wins
+
+***** Round: 4 *********************
+
+Number of Draws: 1
+
+Player 1: paper	 Player 1 Total Wins: 1
+Player 2: rock	 Player 2 Total Wins: 0
+Player 1 Wins
+
+***** Round: 5 *********************
+
+Number of Draws: 1
+
+Player 1: rock	 Player 1 Total Wins: 2
+Player 2: scissors	 Player 2 Total Wins: 0
+Player 1 Wins
+
+***** Round: 6 *********************
+
+Number of Draws: 1
+
+Player 1: paper	 Player 1 Total Wins: 1
+Player 2: paper	 Player 2 Total Wins: 0
+
+			 Draw 
+
+
+***** Round: 7 *********************
+
+Number of Draws: 2
+
+Player 1: rock	 Player 1 Total Wins: 1
+Player 2: rock	 Player 2 Total Wins: 0
+
+			 Draw 
+
+
+***** Round: 8 *********************
+
+Number of Draws: 3
+
+Player 1: scissors	 Player 1 Total Wins: 1
+Player 2: paper	 Player 2 Total Wins: 0
+Player 1 Wins
+GAME WON
+

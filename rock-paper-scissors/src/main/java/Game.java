@@ -1,9 +1,17 @@
 public class Game 
 {
-    public static void main(String args[])
+    private static Player p1;
+	private static Player p2;
+
+	public static void setPlayers(Player p1, Player p2) {
+		Game.p1 = p1;
+		Game.p2 = p2;
+	}
+	
+	public static void main(String args[])
     {
-        Player p1 = new Player();
-        Player p2 = new Player();
+//        p1 = new Player();
+//        p2 = new Player();
         boolean gameWon = false;  
         int roundsPlayed = 0;    // Number of rounds played
         int p1Wins = p1.wins;
@@ -67,41 +75,5 @@ public class Game
             }
             System.out.println();
         } while(gameWon != true);
-    }
-}
-/**
- *
- */
-class Player{
-    int wins;      // # of wins
-    int winTotal;
-    /**
-     * Randomly choose rock, paper, or scissors
-     */
-    public String playerChoice()
-    {
-        String choice = "";
-        int c = (int)(Math.random()*3);
-        switch(c) {
-            case 0:
-                choice = ("rock");
-                break;
-            case 1:
-                choice = ("paper");
-                break;
-            case 2:
-                choice = ("scissors");
-                break;
-        }
-        return choice;
-    }
-    public int setWins() 
-    {
-        int winTotal = wins++;
-        return winTotal;
-    }
-    public int getWins() 
-    {
-        return(wins);
     }
 }
