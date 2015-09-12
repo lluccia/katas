@@ -20,12 +20,11 @@ public class Game
 	
 	public static void playGame() {
         roundsPlayed = 0;
-        p1Wins = p1.wins;
-        p2Wins = p2.wins;
         draw = 0;
         // Game Loop
         do {
             playRound();
+            printRoundInfo();
             checkRoundWin();
             roundsPlayed++;
             if(gameEnded()) {
@@ -38,41 +37,39 @@ public class Game
 	private static void playRound() {
 		p1Choice = p1.choose();
 		p2Choice = p2.choose();
-		
-		printRoundInfo();
 	}
 
 	private static void printRoundInfo() {
 		System.out.println("***** Round: " + roundsPlayed + " *********************\n");
 		System.out.println("Number of Draws: " + draw + "\n");
-		System.out.println("Player 1: " + p1.getChoice() + "\t Player 1 Total Wins: " + p1Wins);
-		System.out.println("Player 2: " + p2.getChoice()+ "\t Player 2 Total Wins: " + p2Wins);
+		System.out.println("Player 1: " + p1.getChoice() + "\t Player 1 Total Wins: " + p1.getWins());
+		System.out.println("Player 2: " + p2.getChoice()+ "\t Player 2 Total Wins: " + p2.getWins());
 	}
 
 	private static void checkRoundWin() {
-		if((p1Choice.equals("rock")) && (p2Choice.equals("paper"))) {
-		    System.out.println("Player 2 Wins");
-		    p2Wins++;
-		} else if((p1Choice.equals("paper")) && (p2Choice.equals("scissors"))) {
-			p2Wins = p2.setWins();
-			System.out.println("Player 2 Wins");
-		} else if((p1Choice.equals("scissors")) && (p2Choice.equals("rock"))) {
-		    p2Wins = p2.setWins();
-		    System.out.println("Player 2 Wins");
-		} else if((p1Choice.equals("rock")) && (p2Choice.equals("scissors"))) {
-			p1Wins = p1.setWins();
-			System.out.println("Player 1 Wins");
-		} else if((p1Choice.equals("paper")) && (p2Choice.equals("rock"))) {
-		    p1Wins++;
-		    System.out.println("Player 1 Wins");
-		} else if((p1Choice.equals("scissors")) && (p2Choice.equals("paper"))) {
-		    p1Wins = p1.setWins();
-		    System.out.println("Player 1 Wins");
-		}
-		if(p1Choice==p2Choice) {
+		if(p1.getChoice().equals(p2.getChoice())) {
 		    draw++;
 		    System.out.println("\n\t\t\t Draw \n");
+		} else if((p1Choice.equals("rock")) && (p2Choice.equals("paper"))) {
+		    System.out.println("Player 2 Wins");
+		    p2.addWin();
+		} else if((p1Choice.equals("paper")) && (p2Choice.equals("scissors"))) {
+			p2.addWin();
+			System.out.println("Player 2 Wins");
+		} else if((p1Choice.equals("scissors")) && (p2Choice.equals("rock"))) {
+		    p2.addWin();
+		    System.out.println("Player 2 Wins");
+		} else if((p1Choice.equals("rock")) && (p2Choice.equals("scissors"))) {
+			p1.addWin();
+			System.out.println("Player 1 Wins");
+		} else if((p1Choice.equals("paper")) && (p2Choice.equals("rock"))) {
+		    p1.addWin();
+		    System.out.println("Player 1 Wins");
+		} else if((p1Choice.equals("scissors")) && (p2Choice.equals("paper"))) {
+		    p1.addWin();
+		    System.out.println("Player 1 Wins");
 		}
+
 	}
 	
 	private static boolean gameEnded() {

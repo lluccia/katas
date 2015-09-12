@@ -2,7 +2,6 @@
 class Player {
 	
     int wins;      // # of wins
-    int winTotal;
 	protected String choice;
 	
     /**
@@ -25,9 +24,8 @@ class Player {
         return choice;
     }
     
-    public int setWins() {
-        int winTotal = wins++;
-        return winTotal;
+    public void addWin() {
+    	wins++;
     }
     
     public int getWins() {
