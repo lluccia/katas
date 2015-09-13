@@ -2,7 +2,7 @@
 
 public class PlayerWithFixedChoices extends Player {
 	
-	public String[] choices;
+	public Choice[] choices;
 	public int turnCount = 0;
 
 	public PlayerWithFixedChoices(String name) {
@@ -10,7 +10,7 @@ public class PlayerWithFixedChoices extends Player {
 	}
 	
 	@Override
-	public String choose() {
+	public Choice choose() {
 		super.choice = choices[turnCount++];
 		return choice;
 	}

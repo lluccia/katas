@@ -27,8 +27,8 @@ public class GameTest {
 	public void testGame1() throws IOException {
 		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
 		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
-		p1.choices = new String[] {"rock", "rock", "scissors", "paper", "paper", "rock", "paper", "rock", "scissors"};
-		p2.choices = new String[] {"scissors", "rock", "rock", "rock", "rock", "scissors", "paper", "rock", "paper"};
+		p1.choices = new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.paper, Choice.rock, Choice.paper, Choice.rock, Choice.scissors};
+		p2.choices = new Choice[] {Choice.scissors, Choice.rock, Choice.rock, Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock, Choice.paper};
 
 		Game game = new Game();
 		game.setGameReportPrinter(new ConsoleGamePrinter());
@@ -49,8 +49,8 @@ public class GameTest {
 	public void testGame2() throws IOException {
 		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
 		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
-		p1.choices = new String[] {"paper", "scissors", "paper", "rock", "scissors"};
-		p2.choices = new String[] {"rock", "rock", "scissors", "paper", "rock"};
+		p1.choices = new Choice[] {Choice.paper, Choice.scissors, Choice.paper, Choice.rock, Choice.scissors};
+		p2.choices = new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock};
 		
 		Game game = new Game();
 		game.setGameReportPrinter(new ConsoleGamePrinter());
@@ -71,8 +71,8 @@ public class GameTest {
 	public void testGameStringPrinter() throws IOException {
 		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
 		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
-		p1.choices = new String[] {"rock", "rock", "scissors", "paper", "paper", "rock", "paper", "rock", "scissors"};
-		p2.choices = new String[] {"scissors", "rock", "rock", "rock", "rock", "scissors", "paper", "rock", "paper"};
+		p1.choices = new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.paper, Choice.rock, Choice.paper, Choice.rock, Choice.scissors};
+		p2.choices = new Choice[] {Choice.scissors, Choice.rock, Choice.rock, Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock, Choice.paper};
 		
 		Game game = new Game();
 		game.setPlayers(p1, p2);

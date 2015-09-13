@@ -2,7 +2,7 @@
 class Player {
 	
     int wins;      // # of wins
-	protected String choice;
+	protected Choice choice;
 	private String name;
 	
 	
@@ -13,18 +13,18 @@ class Player {
     /**
      * Randomly choose rock, paper, or scissors
      */
-    public String choose() {
-        choice = "";
+    public Choice choose() {
+    	choice = null;
         int c = (int)(Math.random()*3);
         switch(c) {
             case 0:
-                choice = ("rock");
+                choice = Choice.rock;
                 break;
             case 1:
-                choice = ("paper");
+                choice = Choice.paper;
                 break;
             case 2:
-                choice = ("scissors");
+                choice = Choice.scissors;
                 break;
         }
         return choice;
@@ -38,7 +38,7 @@ class Player {
         return wins;
     }
     
-    public String getChoice() {
+    public Choice getChoice() {
     	return choice;
     }
 

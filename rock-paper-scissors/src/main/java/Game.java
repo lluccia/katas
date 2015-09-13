@@ -1,9 +1,9 @@
-public class Game 
-{
+public class Game {
+	
     private Player p1;
 	private Player p2;
-	private String p1Choice;
-	private String p2Choice;
+	private Choice p1Choice;
+	private Choice p2Choice;
 	static int roundsPlayed;
 	static int draw;
 
@@ -56,13 +56,13 @@ public class Game
 	}
 
 	private Player getRoundWinner(Player p1, Player p2) {
-		if((p2Choice.equals("rock")) && (p1Choice.equals("scissors"))
-				|| (p2Choice.equals("paper")) && (p1Choice.equals("rock"))
-				|| (p2Choice.equals("scissors")) && (p1Choice.equals("paper"))) {
+		if((p2Choice.equals(Choice.rock)) && (p1Choice.equals(Choice.scissors))
+				|| (p2Choice.equals(Choice.paper)) && (p1Choice.equals(Choice.rock))
+				|| (p2Choice.equals(Choice.scissors)) && (p1Choice.equals(Choice.paper))) {
 		    return p2;
-		} else if((p1Choice.equals("rock")) && (p2Choice.equals("scissors"))
-				|| (p1Choice.equals("paper")) && (p2Choice.equals("rock"))
-				|| (p1Choice.equals("scissors")) && (p2Choice.equals("paper"))) {
+		} else if((p1Choice.equals(Choice.rock)) && (p2Choice.equals(Choice.scissors))
+				|| (p1Choice.equals(Choice.paper)) && (p2Choice.equals(Choice.rock))
+				|| (p1Choice.equals(Choice.scissors)) && (p2Choice.equals(Choice.paper))) {
 			return p1;
 		}
 		return null;
