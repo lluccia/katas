@@ -10,7 +10,19 @@ import org.junit.Test;
 
 
 public class GameTest {
+	
+	private ByteArrayOutputStream setConsoleOutputToStream() {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    PrintStream ps = new PrintStream(baos);
+	    System.setOut(ps);
+		return baos;
+	}
 
+	private String readFileToString(String fileName) throws IOException {
+		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(fileName);
+		return IOUtils.toString(inputStream, "UTF-8");
+	}
+	
 	@Test
 	public void testGame1() throws IOException {
 		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
@@ -20,20 +32,17 @@ public class GameTest {
 		
 		Game.setPlayers(p1, p2);
 		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    PrintStream ps = new PrintStream(baos);
-	    System.setOut(ps);
+		ByteArrayOutputStream baos = setConsoleOutputToStream();
 	    
 	    Game.main(null);
 	    
 	    System.out.flush();
 	    
-	    InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("expectedOutputForGame1.txt");
-	    String expectedOutput = IOUtils.toString(inputStream, "UTF-8");
+		String expectedOutput = readFileToString("expectedOutputForGame1.txt");
 	    
 		assertEquals(expectedOutput, baos.toString());
 	}
-	
+
 	@Test
 	public void testGame2() throws IOException {
 		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
@@ -43,18 +52,36 @@ public class GameTest {
 		
 		Game.setPlayers(p1, p2);
 		
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		PrintStream ps = new PrintStream(baos);
-		System.setOut(ps);
+		ByteArrayOutputStream baos = setConsoleOutputToStream();
 		
 		Game.main(null);
 		
 		System.out.flush();
 		
-		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("expectedOutputForGame2.txt");
-		String expectedOutput = IOUtils.toString(inputStream, "UTF-8");
+		String expectedOutput = readFileToString("expectedOutputForGame2.txt");
 		
 		assertEquals(expectedOutput, baos.toString());
+	}
+	
+	@Test
+	public void testGameStringPrinter() throws IOException {
+		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
+		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
+		p1.choices = new String[] {"rock", "rock", "scissors", "paper", "paper", "rock", "paper", "rock", "scissors"};
+		p2.choices = new String[] {"scissors", "rock", "rock", "rock", "rock", "scissors", "paper", "rock", "paper"};
+		
+		Game.setPlayers(p1, p2);
+		
+		StringGamePrinter gamePrinter = new StringGamePrinter();
+		Game.setGameReportPrinter(gamePrinter);
+		
+		Game.main(null);
+		
+		System.out.flush();
+		
+		String expectedOutput = readFileToString("expectedOutputForGame1.txt");
+		
+		assertEquals(expectedOutput, gamePrinter.getGameReport());
 	}
 	
 }
