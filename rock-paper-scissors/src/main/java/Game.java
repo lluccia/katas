@@ -1,31 +1,31 @@
 public class Game 
 {
-    private static Player p1;
-	private static Player p2;
-	private static String p1Choice;
-	private static String p2Choice;
+    private Player p1;
+	private Player p2;
+	private String p1Choice;
+	private String p2Choice;
 	static int roundsPlayed;
 	static int draw;
 
-	private static GamePrinter gamePrinter = new ConsoleGamePrinter();
+	private GamePrinter gamePrinter = new ConsoleGamePrinter();
 	
-	public static void setPlayers(Player p1, Player p2) {
-		Game.p1 = p1;
-		Game.p2 = p2;
+	public void setPlayers(Player p1, Player p2) {
+		this.p1 = p1;
+		this.p2 = p2;
 	}
 	
-	public static void setGameReportPrinter(GamePrinter gamePrinter) {
-		Game.gamePrinter = gamePrinter;
+	public void setGameReportPrinter(GamePrinter gamePrinter) {
+		this.gamePrinter = gamePrinter;
 	}
 	
 	public static void main(String args[]) {
-		playGame();
+		Game game = new Game();
+		game.playGame();
     }
 	
-	public static void playGame() {
+	public void playGame() {
         roundsPlayed = 0;
         draw = 0;
-        // Game Loop
         do {
             playRound();
             gamePrinter.printRoundInfo(p1, p2);
@@ -38,12 +38,12 @@ public class Game
         } while(!gameEnded());
     }
 
-	private static void playRound() {
+	private void playRound() {
 		p1Choice = p1.choose();
 		p2Choice = p2.choose();
 	}
 
-	private static void checkRoundWin() {
+	private void checkRoundWin() {
 		Player roundWinner = getRoundWinner(p1, p2);
 		
 		if (roundWinner == null) {
@@ -55,7 +55,7 @@ public class Game
 		}
 	}
 
-	private static Player getRoundWinner(Player p1, Player p2) {
+	private Player getRoundWinner(Player p1, Player p2) {
 		if((p2Choice.equals("rock")) && (p1Choice.equals("scissors"))
 				|| (p2Choice.equals("paper")) && (p1Choice.equals("rock"))
 				|| (p2Choice.equals("scissors")) && (p1Choice.equals("paper"))) {
@@ -68,7 +68,7 @@ public class Game
 		return null;
 	}
 	
-	private static boolean gameEnded() {
+	private boolean gameEnded() {
 		return (p1.getWins()>=3) || (p2.getWins()>=3);
 	}
 }

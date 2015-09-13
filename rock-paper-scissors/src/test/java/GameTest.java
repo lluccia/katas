@@ -29,12 +29,14 @@ public class GameTest {
 		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
 		p1.choices = new String[] {"rock", "rock", "scissors", "paper", "paper", "rock", "paper", "rock", "scissors"};
 		p2.choices = new String[] {"scissors", "rock", "rock", "rock", "rock", "scissors", "paper", "rock", "paper"};
-		
-		Game.setPlayers(p1, p2);
+
+		Game game = new Game();
+		game.setGameReportPrinter(new ConsoleGamePrinter());
+		game.setPlayers(p1, p2);
 		
 		ByteArrayOutputStream baos = setConsoleOutputToStream();
 	    
-	    Game.main(null);
+		game.playGame();
 	    
 	    System.out.flush();
 	    
@@ -50,11 +52,13 @@ public class GameTest {
 		p1.choices = new String[] {"paper", "scissors", "paper", "rock", "scissors"};
 		p2.choices = new String[] {"rock", "rock", "scissors", "paper", "rock"};
 		
-		Game.setPlayers(p1, p2);
+		Game game = new Game();
+		game.setGameReportPrinter(new ConsoleGamePrinter());
+		game.setPlayers(p1, p2);
 		
 		ByteArrayOutputStream baos = setConsoleOutputToStream();
 		
-		Game.main(null);
+		game.playGame();
 		
 		System.out.flush();
 		
@@ -70,12 +74,13 @@ public class GameTest {
 		p1.choices = new String[] {"rock", "rock", "scissors", "paper", "paper", "rock", "paper", "rock", "scissors"};
 		p2.choices = new String[] {"scissors", "rock", "rock", "rock", "rock", "scissors", "paper", "rock", "paper"};
 		
-		Game.setPlayers(p1, p2);
+		Game game = new Game();
+		game.setPlayers(p1, p2);
 		
 		StringGamePrinter gamePrinter = new StringGamePrinter();
-		Game.setGameReportPrinter(gamePrinter);
+		game.setGameReportPrinter(gamePrinter);
 		
-		Game.main(null);
+		game.playGame();
 		
 		System.out.flush();
 		
