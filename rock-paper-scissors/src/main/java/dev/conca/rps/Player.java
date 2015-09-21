@@ -1,5 +1,6 @@
+package dev.conca.rps;
 
-class Player {
+public class Player {
 	
     int wins;
 	protected Choice choice;

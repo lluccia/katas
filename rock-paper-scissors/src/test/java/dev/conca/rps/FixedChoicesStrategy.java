@@ -1,3 +1,7 @@
+package dev.conca.rps;
+import dev.conca.rps.Choice;
+import dev.conca.rps.ChoiceStrategy;
+
 
 
 public class FixedChoicesStrategy implements ChoiceStrategy {

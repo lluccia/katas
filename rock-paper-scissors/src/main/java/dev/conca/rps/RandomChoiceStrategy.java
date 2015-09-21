@@ -1,3 +1,4 @@
+package dev.conca.rps;
 
 public class RandomChoiceStrategy implements ChoiceStrategy {
 

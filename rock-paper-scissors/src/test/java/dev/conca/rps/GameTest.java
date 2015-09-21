@@ -1,3 +1,4 @@
+package dev.conca.rps;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
@@ -8,6 +9,12 @@ import java.io.PrintStream;
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Test;
+
+import output.ConsoleGamePrinter;
+import output.StringGamePrinter;
+import dev.conca.rps.Choice;
+import dev.conca.rps.Game;
+import dev.conca.rps.Player;
 
 
 public class GameTest {

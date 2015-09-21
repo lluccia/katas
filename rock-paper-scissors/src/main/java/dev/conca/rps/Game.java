@@ -1,9 +1,14 @@
+package dev.conca.rps;
+
+import output.ConsoleGamePrinter;
+import output.GamePrinter;
+
 public class Game {
 	
     private Player p1;
 	private Player p2;
-	static int roundsPlayed;
-	static int drawCount;
+	private int roundsPlayed;
+	private int drawCount;
 
 	private GamePrinter gamePrinter = new ConsoleGamePrinter();
 	
@@ -16,21 +21,14 @@ public class Game {
 		this.gamePrinter = gamePrinter;
 	}
 	
-	public static void main(String args[]) {
-		Game game = new Game();
-		game.p1 = new Player("1");
-		game.p2 = new Player("2");
-		game.playGame();
-    }
-	
 	public void playGame() {
-        roundsPlayed = 0;
-        drawCount = 0;
+        setRoundsPlayed(0);
+        setDrawCount(0);
         do {
             playRound();
-            gamePrinter.printRoundInfo(p1, p2);
+            gamePrinter.printRoundInfo(this, p1, p2);
             checkRoundWin();
-            roundsPlayed++;
+            setRoundsPlayed(getRoundsPlayed() + 1);
             if(gameEnded()) {
             	gamePrinter.printGameWon();
             }
@@ -45,7 +43,7 @@ public class Game {
 
 	private void checkRoundWin() {
 		if (isDraw(p1, p2)) {
-		    drawCount++;
+		    setDrawCount(getDrawCount() + 1);
 		    gamePrinter.printDraw();
 		} else {
 			Player roundWinner = getRoundWinner(p1, p2);
@@ -64,5 +62,21 @@ public class Game {
 	
 	private boolean gameEnded() {
 		return (p1.getWins()>=3) || (p2.getWins()>=3);
+	}
+
+	public int getRoundsPlayed() {
+		return roundsPlayed;
+	}
+
+	public void setRoundsPlayed(int roundsPlayed) {
+		this.roundsPlayed = roundsPlayed;
+	}
+
+	public int getDrawCount() {
+		return drawCount;
+	}
+
+	public void setDrawCount(int drawCount) {
+		this.drawCount = drawCount;
 	}
 }

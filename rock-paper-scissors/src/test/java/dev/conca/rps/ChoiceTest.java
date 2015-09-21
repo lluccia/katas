@@ -1,6 +1,9 @@
+package dev.conca.rps;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import dev.conca.rps.Choice;
 
 
 public class ChoiceTest {

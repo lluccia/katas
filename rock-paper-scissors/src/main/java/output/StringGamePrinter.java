@@ -1,3 +1,7 @@
+package output;
+
+import dev.conca.rps.Game;
+import dev.conca.rps.Player;
 
 public class StringGamePrinter implements GamePrinter {
 
@@ -11,10 +15,10 @@ public class StringGamePrinter implements GamePrinter {
 		gameReport += "\n";
 	}
 
-	public void printRoundInfo(Player player1, Player player2) {
-		gameReport += "***** Round: " + Game.roundsPlayed + " *********************\n";
+	public void printRoundInfo(Game game, Player player1, Player player2) {
+		gameReport += "***** Round: " + game.getRoundsPlayed() + " *********************\n";
 		gameReport += "\n";
-		gameReport += "Number of Draws: " + Game.drawCount + "\n";
+		gameReport += "Number of Draws: " + game.getDrawCount() + "\n";
 		gameReport += "\n";
 		gameReport += "Player " + player1.getName() + ": " + player1.getChoice() + "\t Player " + player1.getName() + " Total Wins: " + player1.getWins();
 		gameReport += "\n";
