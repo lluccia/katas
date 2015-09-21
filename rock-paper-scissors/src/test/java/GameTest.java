@@ -6,10 +6,16 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.Before;
 import org.junit.Test;
 
 
 public class GameTest {
+	
+	@Before
+	public void setUp() {
+		System.setProperty("line.separator", "\n");
+	}
 	
 	private ByteArrayOutputStream setConsoleOutputToStream() {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
