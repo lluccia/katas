@@ -1,35 +1,22 @@
 
 class Player {
 	
-    int wins;      // # of wins
+    int wins;
 	protected Choice choice;
 	private String name;
 	
+	private ChoiceStrategy choiceStrategy;
 	
 	public Player(String name) {
 		this.name = name;
+		this.setChoiceStrategy(new RandomChoiceStrategy());
 	}
 	
-    /**
-     * Randomly choose rock, paper, or scissors
-     */
     public Choice choose() {
-    	choice = null;
-        int c = (int)(Math.random()*3);
-        switch(c) {
-            case 0:
-                choice = Choice.rock;
-                break;
-            case 1:
-                choice = Choice.paper;
-                break;
-            case 2:
-                choice = Choice.scissors;
-                break;
-        }
-        return choice;
+    	choice = getChoiceStrategy().choose();
+    	return choice;
     }
-    
+
     public void addWin() {
     	wins++;
     }
@@ -44,5 +31,13 @@ class Player {
 
 	public String getName() {
 		return name;
+	}
+
+	public ChoiceStrategy getChoiceStrategy() {
+		return choiceStrategy;
+	}
+
+	public void setChoiceStrategy(ChoiceStrategy choiceStrategy) {
+		this.choiceStrategy = choiceStrategy;
 	}
 }

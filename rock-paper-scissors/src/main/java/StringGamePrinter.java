@@ -14,7 +14,7 @@ public class StringGamePrinter implements GamePrinter {
 	public void printRoundInfo(Player player1, Player player2) {
 		gameReport += "***** Round: " + Game.roundsPlayed + " *********************\n";
 		gameReport += "\n";
-		gameReport += "Number of Draws: " + Game.draw + "\n";
+		gameReport += "Number of Draws: " + Game.drawCount + "\n";
 		gameReport += "\n";
 		gameReport += "Player " + player1.getName() + ": " + player1.getChoice() + "\t Player " + player1.getName() + " Total Wins: " + player1.getWins();
 		gameReport += "\n";

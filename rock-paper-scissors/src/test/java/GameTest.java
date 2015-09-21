@@ -12,6 +12,9 @@ import org.junit.Test;
 
 public class GameTest {
 	
+	private Player p1;
+	private Player p2;
+
 	@Before
 	public void setUp() {
 		System.setProperty("line.separator", "\n");
@@ -29,13 +32,24 @@ public class GameTest {
 		return IOUtils.toString(inputStream, "UTF-8");
 	}
 	
+	private void createPlayers() {
+		p1 = new Player("1");
+		p2 = new Player("2");
+	}
+
 	@Test
 	public void testGame1() throws IOException {
-		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
-		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
-		p1.choices = new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.paper, Choice.rock, Choice.paper, Choice.rock, Choice.scissors};
-		p2.choices = new Choice[] {Choice.scissors, Choice.rock, Choice.rock, Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock, Choice.paper};
+		createPlayers();
+		
+		FixedChoicesStrategy p1Strategy = new FixedChoicesStrategy();
+		FixedChoicesStrategy p2Strategy = new FixedChoicesStrategy();
+		
+		p1Strategy.setChoices(new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.paper, Choice.rock, Choice.paper, Choice.rock, Choice.scissors});
+		p2Strategy.setChoices(new Choice[] {Choice.scissors, Choice.rock, Choice.rock, Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock, Choice.paper});
 
+		p1.setChoiceStrategy(p1Strategy);
+		p2.setChoiceStrategy(p2Strategy);
+		
 		Game game = new Game();
 		game.setGameReportPrinter(new ConsoleGamePrinter());
 		game.setPlayers(p1, p2);
@@ -53,10 +67,16 @@ public class GameTest {
 
 	@Test
 	public void testGame2() throws IOException {
-		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
-		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
-		p1.choices = new Choice[] {Choice.paper, Choice.scissors, Choice.paper, Choice.rock, Choice.scissors};
-		p2.choices = new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock};
+		createPlayers();
+		
+		FixedChoicesStrategy p1Strategy = new FixedChoicesStrategy();
+		FixedChoicesStrategy p2Strategy = new FixedChoicesStrategy();
+		
+		p1Strategy.setChoices(new Choice[] {Choice.paper, Choice.scissors, Choice.paper, Choice.rock, Choice.scissors});
+		p2Strategy.setChoices(new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock});
+
+		p1.setChoiceStrategy(p1Strategy);
+		p2.setChoiceStrategy(p2Strategy);
 		
 		Game game = new Game();
 		game.setGameReportPrinter(new ConsoleGamePrinter());
@@ -75,10 +95,16 @@ public class GameTest {
 	
 	@Test
 	public void testGameStringPrinter() throws IOException {
-		PlayerWithFixedChoices p1 = new PlayerWithFixedChoices("1");
-		PlayerWithFixedChoices p2 = new PlayerWithFixedChoices("2");
-		p1.choices = new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.paper, Choice.rock, Choice.paper, Choice.rock, Choice.scissors};
-		p2.choices = new Choice[] {Choice.scissors, Choice.rock, Choice.rock, Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock, Choice.paper};
+		createPlayers();
+		
+		FixedChoicesStrategy p1Strategy = new FixedChoicesStrategy();
+		FixedChoicesStrategy p2Strategy = new FixedChoicesStrategy();
+		
+		p1Strategy.setChoices(new Choice[] {Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.paper, Choice.rock, Choice.paper, Choice.rock, Choice.scissors});
+		p2Strategy.setChoices(new Choice[] {Choice.scissors, Choice.rock, Choice.rock, Choice.rock, Choice.rock, Choice.scissors, Choice.paper, Choice.rock, Choice.paper});
+		
+		p1.setChoiceStrategy(p1Strategy);
+		p2.setChoiceStrategy(p2Strategy);
 		
 		Game game = new Game();
 		game.setPlayers(p1, p2);
