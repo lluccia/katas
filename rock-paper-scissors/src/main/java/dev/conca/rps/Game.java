@@ -26,8 +26,12 @@ public class Game {
         setDrawCount(0);
         do {
             playRound();
+            Player roundWinner = checkRoundWin();
             gamePrinter.printRoundInfo(this, p1, p2);
-            checkRoundWin();
+            if (roundWinner == null)
+            	gamePrinter.printDraw();
+            else
+            	gamePrinter.printRoundWinner(roundWinner);
             setRoundsPlayed(getRoundsPlayed() + 1);
             if(gameEnded()) {
             	gamePrinter.printGameWon();
@@ -41,15 +45,15 @@ public class Game {
 		p2.choose();
 	}
 
-	private void checkRoundWin() {
+	private Player checkRoundWin() {
+		Player roundWinner = null;
 		if (isDraw(p1, p2)) {
 		    setDrawCount(getDrawCount() + 1);
-		    gamePrinter.printDraw();
 		} else {
-			Player roundWinner = getRoundWinner(p1, p2);
+			roundWinner = getRoundWinner(p1, p2);
 			roundWinner.addWin();
-			gamePrinter.printRoundWinner(roundWinner);
 		}
+		return roundWinner;
 	}
 
 	private boolean isDraw(Player p1, Player p2) {

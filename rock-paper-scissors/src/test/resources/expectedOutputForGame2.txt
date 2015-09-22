@@ -2,7 +2,7 @@
 
 Number of Draws: 0
 
-Player 1: paper	 Player 1 Total Wins: 0
+Player 1: paper	 Player 1 Total Wins: 1
 Player 2: rock	 Player 2 Total Wins: 0
 Player 1 Wins
 
@@ -11,7 +11,7 @@ Player 1 Wins
 Number of Draws: 0
 
 Player 1: scissors	 Player 1 Total Wins: 1
-Player 2: rock	 Player 2 Total Wins: 0
+Player 2: rock	 Player 2 Total Wins: 1
 Player 2 Wins
 
 ***** Round: 2 *********************
@@ -19,7 +19,7 @@ Player 2 Wins
 Number of Draws: 0
 
 Player 1: paper	 Player 1 Total Wins: 1
-Player 2: scissors	 Player 2 Total Wins: 1
+Player 2: scissors	 Player 2 Total Wins: 2
 Player 2 Wins
 
 ***** Round: 3 *********************
@@ -27,7 +27,7 @@ Player 2 Wins
 Number of Draws: 0
 
 Player 1: rock	 Player 1 Total Wins: 1
-Player 2: paper	 Player 2 Total Wins: 2
+Player 2: paper	 Player 2 Total Wins: 3
 Player 2 Wins
 GAME WON
 
