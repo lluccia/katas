@@ -10,6 +10,9 @@ public class RockPaperScissors {
 		Player p1 = new Player("1");
 		Player p2 = new Player("2");
 		
+		p1.setChoiceStrategy(new ConsoleChoiceStrategy());
+		p2.setChoiceStrategy(new RandomChoiceStrategy());
+		
 		game.setPlayers(p1, p2);
 		
 		game.playGame();
