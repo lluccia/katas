@@ -78,5 +78,58 @@ public class BowlingTest {
 		
 		assertEquals(300, game.getScore());
 	}
+	
+	@Test
+	public void printGutterGameScore() {
+		rollMany(20, 0);
+		String expectedScore = "| 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 - |\n" +
+				               "|   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0   |";
+		
+		assertEquals(expectedScore, game.score());
+	}
+	
+	@Test
+	public void printAllOnesGameScore() {
+		rollMany(20, 1);
+		String expectedScore = "| 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 - |\n" +
+	                           "|   2 |   4 |   6 |   8 |  10 |  12 |  14 |  16 |  18 |  20   |";
+		
+		assertEquals(expectedScore, game.score());
+	}
+	
+	@Test
+	public void printOneSpareGameScore() {
+		rollSpare();
+		game.roll(5);
+		rollMany(17, 0);
+		
+		String expectedScore = "| 5 / | 5 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 - |\n" +
+			                   "|  15 |  20 |  20 |  20 |  20 |  20 |  20 |  20 |  20 |  20   |";
+		
+		assertEquals(expectedScore, game.score());
+	}
+	
+	@Test
+	public void printOneStrikeGameScore() {
+		rollStrike(); //16
+		game.roll(3);  //3
+		game.roll(3);  //3
+		rollMany(16, 0); 
+		
+		String expectedScore = "|   # | 3 3 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 - |\n" +
+			                   "|  16 |  22 |  22 |  22 |  22 |  22 |  22 |  22 |  22 |  22   |";
+		
+		assertEquals(expectedScore, game.score());
+	}
+	
+	@Test
+	public void printPerfectGameScore() {
+		rollMany(12, 10);
+		
+		String expectedScore = "|   # |   # |   # |   # |   # |   # |   # |   # |   # | # # # |\n" +
+		                       "|  30 |  60 |  90 | 120 | 150 | 180 | 210 | 240 | 270 | 300   |";
+		
+		assertEquals(expectedScore, game.score());
+	}
 
 }
