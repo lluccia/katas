@@ -2,13 +2,14 @@ package bowling;
 
 public class Game {
 	
-	private int[] rolls = new int[20];
+	private int[] rolls = new int[21];
 	private int currentRoll = 0;
 
 	private static final String SPACE = " ";
 	private static final String STRIKE_SYMBOL = "#";
 	private static final String SPARE_SYMBOL = "/";
 	private static final String FRAME_SEPARATOR = "|";
+	private String line;
 	
 	public void roll(int pins) {
 		rolls[currentRoll++] = pins;
@@ -22,16 +23,16 @@ public class Game {
 		int score = 0;
 		int firstBallInFrame = 0;
 		for (int frame = 1; frame <= lastFrame; frame++) {
-			if (isStrike(firstBallInFrame)) {
+			
+			if (isStrike(firstBallInFrame))
 				score += 10 + nextTwoBalls(firstBallInFrame);
-				firstBallInFrame++;
-			} else if (isSpare(firstBallInFrame)) {
-				score += 10 + nextBall(firstBallInFrame);
-				firstBallInFrame += 2;
-			} else {
+			else if (isSpare(firstBallInFrame))
+				score += 10 + nextBallForSpare(firstBallInFrame);
+			else
 				score += sumBallsInFrame(firstBallInFrame);
-				firstBallInFrame += 2;
-			}
+			
+			firstBallInFrame = incrementFrame(firstBallInFrame);
+
 		}
 		return score;
 	}
@@ -40,8 +41,8 @@ public class Game {
 		return rolls[firstBallInFrame] + rolls[firstBallInFrame + 1];
 	}
 
-	private int nextBall(int firstBallInFrame) {
-		return rolls[firstBallInFrame + 1];
+	private int nextBallForSpare(int firstBallInFrame) {
+		return rolls[firstBallInFrame + 2];
 	}
 	
 	private int nextTwoBalls(int firstBallInFrame) {
@@ -56,35 +57,35 @@ public class Game {
 		return sumBallsInFrame(firstBallInFrame) == 10;
 	}
 
-	public String score() {
+	private int incrementFrame(int firstBallInFrame) {
+		if (isStrike(firstBallInFrame))
+			firstBallInFrame++;
+		else
+			firstBallInFrame += 2;
+		return firstBallInFrame;
+	}
+
+	public String printScore() {
 		String score = printFirstLine() + "\n" +
 	                   printSecondLine();
 		return score;
 	}
 
 	private String printFirstLine() {
-		String line = "";
-		
+		line = "";
 		int firstBallInFrame = 0;
 		for (int frame = 1; frame <= 9; frame++) {
-			line += FRAME_SEPARATOR; 
-			line += SPACE;
-			if (isStrike(firstBallInFrame)) {
-				line += SPACE;
-				line += SPACE;
-				line += STRIKE_SYMBOL;
-				firstBallInFrame++;
-			} else {
-				line += rolls[firstBallInFrame];
-				line += SPACE;
-				line += isSpare(firstBallInFrame) ? SPARE_SYMBOL : rolls[firstBallInFrame + 1];
-				firstBallInFrame += 2;
-			}
-			line += SPACE;
+			
+			line += FRAME_SEPARATOR;
+			line += printNormalFrame(firstBallInFrame);
+				
+			firstBallInFrame = incrementFrame(firstBallInFrame);
 		}
+		
+		
 		line += FRAME_SEPARATOR; 
-		line += SPACE;
-		if (isStrike(firstBallInFrame)|| isSpare(firstBallInFrame)) {
+		if (isStrike(firstBallInFrame) || isSpare(firstBallInFrame)) {
+			line += SPACE;
 			line += isStrike(firstBallInFrame) ? STRIKE_SYMBOL : rolls[firstBallInFrame];
 			line += SPACE;
 			line += isStrike(firstBallInFrame+1) ? STRIKE_SYMBOL : isSpare(firstBallInFrame) ? SPARE_SYMBOL : rolls[firstBallInFrame+1];
@@ -92,18 +93,39 @@ public class Game {
 			line += isStrike(firstBallInFrame+2) ? STRIKE_SYMBOL : rolls[firstBallInFrame+2];
 			line += SPACE;
 		} else {
+			line += SPACE;
 			line += rolls[firstBallInFrame];
 			line += SPACE;
 			line += rolls[firstBallInFrame+1];
 			line += SPACE;
-			line += "-";
+			line += (isStrike(firstBallInFrame) || isSpare(firstBallInFrame)) ? rolls[firstBallInFrame+2] : "-";
 			line += SPACE;
 		}
 		line += FRAME_SEPARATOR;
 		
 		return line;
 	}
-	
+
+	private String printNormalFrame(int firstBallInFrame) {
+		return SPACE + frameFirstRow(firstBallInFrame) + SPACE + printFrameSecondRoll(firstBallInFrame) + SPACE;
+	}
+
+	private String printFrameSecondRoll(int firstBallInFrame) {
+		String roll = "" + (
+				isStrike(firstBallInFrame) ? 
+						STRIKE_SYMBOL :
+						isSpare(firstBallInFrame) ?
+								SPARE_SYMBOL :
+								rolls[firstBallInFrame+1]); 
+		return roll;
+	}
+
+	private Object frameFirstRow(int firstBallInFrame) {
+		return isStrike(firstBallInFrame) ?
+				SPACE :
+				rolls[firstBallInFrame];
+	}
+
 	private String printSecondLine() {
 		String line = "";
 		for (int frame = 1; frame <= 10; frame++) {

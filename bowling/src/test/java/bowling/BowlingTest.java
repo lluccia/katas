@@ -85,7 +85,7 @@ public class BowlingTest {
 		String expectedScore = "| 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 - |\n" +
 				               "|   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0   |";
 		
-		assertEquals(expectedScore, game.score());
+		assertEquals(expectedScore, game.printScore());
 	}
 	
 	@Test
@@ -94,7 +94,7 @@ public class BowlingTest {
 		String expectedScore = "| 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 | 1 1 - |\n" +
 	                           "|   2 |   4 |   6 |   8 |  10 |  12 |  14 |  16 |  18 |  20   |";
 		
-		assertEquals(expectedScore, game.score());
+		assertEquals(expectedScore, game.printScore());
 	}
 	
 	@Test
@@ -106,7 +106,7 @@ public class BowlingTest {
 		String expectedScore = "| 5 / | 5 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 - |\n" +
 			                   "|  15 |  20 |  20 |  20 |  20 |  20 |  20 |  20 |  20 |  20   |";
 		
-		assertEquals(expectedScore, game.score());
+		assertEquals(expectedScore, game.printScore());
 	}
 	
 	@Test
@@ -119,7 +119,7 @@ public class BowlingTest {
 		String expectedScore = "|   # | 3 3 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 - |\n" +
 			                   "|  16 |  22 |  22 |  22 |  22 |  22 |  22 |  22 |  22 |  22   |";
 		
-		assertEquals(expectedScore, game.score());
+		assertEquals(expectedScore, game.printScore());
 	}
 	
 	@Test
@@ -129,7 +129,30 @@ public class BowlingTest {
 		String expectedScore = "|   # |   # |   # |   # |   # |   # |   # |   # |   # | # # # |\n" +
 		                       "|  30 |  60 |  90 | 120 | 150 | 180 | 210 | 240 | 270 | 300   |";
 		
-		assertEquals(expectedScore, game.score());
+		assertEquals(expectedScore, game.printScore());
+	}
+	
+	@Test
+	public void printSpareOnTenthFrameScore() {
+		rollMany(18, 0);
+		game.roll(3);
+		game.roll(7);
+		game.roll(5);
+		
+		String expectedScore = "| 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 0 0 | 3 / 5 |\n" +
+				               "|   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |   0 |  15   |";
+		
+		assertEquals(expectedScore, game.printScore());
+	}
+	
+	@Test
+	public void spareOnTenthFrame() {
+		rollMany(18, 0);
+		game.roll(3);
+		game.roll(7);
+		game.roll(5);
+		
+		assertEquals(15 ,game.getScore());
 	}
 
 }
