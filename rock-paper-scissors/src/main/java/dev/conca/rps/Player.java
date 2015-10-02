@@ -14,7 +14,7 @@ public class Player {
 	}
 	
     public Choice choose() {
-    	choice = getChoiceStrategy().choose();
+    	choice = choiceStrategy.choose();
     	return choice;
     }
 
