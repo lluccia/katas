@@ -49,4 +49,20 @@ public class Product {
 		return specialPriceQuantity > 0;
 	}
 
+	public double getPricePerQuantity(int quantity) {
+		double productsPrice = 0;
+		
+		if (!hasSpecialPrice() || quantity < getSpecialPriceQuantity())
+			productsPrice = quantity * getUnitPrice();
+		else {
+			int packsQuantity = quantity / getSpecialPriceQuantity();
+			productsPrice = packsQuantity * getSpecialPrice();
+			
+			int remainder = quantity % getSpecialPriceQuantity();
+			productsPrice += remainder * getUnitPrice();
+		}
+		
+		return productsPrice;
+	}
+
 }

@@ -40,19 +40,7 @@ public class PriceList {
 	}
 
 	public double getProductsPrice(Product product, int quantity) {
-		double productsPrice = 0;
-		
-		if (!product.hasSpecialPrice() || quantity < product.getSpecialPriceQuantity())
-			productsPrice = quantity * product.getUnitPrice();
-		else {
-			int packsQuantity = quantity / product.getSpecialPriceQuantity();
-			productsPrice = packsQuantity * product.getSpecialPrice();
-			
-			int remainder = quantity % product.getSpecialPriceQuantity();
-			productsPrice += remainder * product.getUnitPrice();
-		}
-		
-		return productsPrice;
+		return product.getPricePerQuantity(quantity);
 	}
 
 }
