@@ -1,7 +1,9 @@
 package checkout;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class PriceList {
 
@@ -41,6 +43,38 @@ public class PriceList {
 
 	public double getProductsPrice(Product product, int quantity) {
 		return product.getPricePerQuantity(quantity);
+	}
+
+	public double calculateTotal(List<Product> products) {
+		double total = 0.0;
+		
+		Map<Product, Integer> quantityPerProduct = getQuantityPerProduct(products);
+		
+		for (Entry<Product, Integer> entry : quantityPerProduct.entrySet()) {
+			Product product = entry.getKey();
+			Integer quantity = entry.getValue();
+			
+			total += getProductsPrice(product, quantity);
+		}
+		
+		return total;
+	}
+	
+	protected Map<Product, Integer> getQuantityPerProduct(List<Product> products) {
+		Map<Product, Integer> quantityPerProduct = new HashMap<Product, Integer>();
+		
+		for (Product product: products) {
+			Integer productTotal = quantityPerProduct.get(product);
+			
+			if (productTotal == null) 
+				productTotal = 0;
+			
+			productTotal += 1;
+			
+			quantityPerProduct.put(product, productTotal);
+		}
+		
+		return quantityPerProduct;
 	}
 
 }
