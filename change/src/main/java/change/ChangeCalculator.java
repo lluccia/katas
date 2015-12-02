@@ -42,44 +42,30 @@ public class ChangeCalculator {
 	}
 
 	private List<BigDecimal> billsForChange(BigDecimal change) {
-		return toBigDecimal(billsForChange(change.doubleValue()));
-	}
-	
-	private List<Double> billsForChange(double change) {
-		List<Double> bills = new ArrayList<Double>();
+		List<BigDecimal> bills = new ArrayList<BigDecimal>();
 		
-		double remainingChange = change;
+		BigDecimal remainingChange = change;
 		for (int i = 0; i < availableBills.length ; i++) {
-			while (remainingChange >= availableBills[i]) {
-				bills.add(availableBills[i]);
-				remainingChange -= availableBills[i];
+			BigDecimal currentBill = BigDecimal.valueOf(availableBills[i]);
+			while (remainingChange.compareTo(currentBill) >= 0) {
+				bills.add(currentBill);
+				remainingChange = remainingChange.subtract(currentBill);
 			}
 		}
 		return bills;
 	}
 
 	private List<BigDecimal> coinsForChange(BigDecimal change) {
-		return toBigDecimal(coinsForChange(change.doubleValue()));
-	}
-	
-	private List<Double> coinsForChange(double change) {
-		List<Double> coins = new ArrayList<Double>();
+		List<BigDecimal> coins = new ArrayList<BigDecimal>();
 		
-		double remainingChange = change;
+		BigDecimal remainingChange = change;
 		for (int i = 0; i < availableCoins.length ; i++) {
-			while (remainingChange >= availableCoins[i]) {
-				coins.add(availableCoins[i]);
-				remainingChange -= availableCoins[i];
+			BigDecimal currentBill = BigDecimal.valueOf(availableCoins[i]);
+			while (remainingChange.compareTo(currentBill) >= 0) {
+				coins.add(currentBill);
+				remainingChange = remainingChange.subtract(currentBill);
 			}
 		}
 		return coins;
-	}
-
-	private List<BigDecimal> toBigDecimal(List<Double> doubleValues) {
-		List<BigDecimal> bdList = new ArrayList<BigDecimal>();
-		for (Double doubleValue: doubleValues) 
-			bdList.add(BigDecimal.valueOf(doubleValue));
-		
-		return bdList;
 	}
 }
