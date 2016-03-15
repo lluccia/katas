@@ -3,18 +3,21 @@ package checkout;
 public class Product {
 
 	private String id;
-	private double unitPrice;
+	
+	private Price price;
 	
 	private int specialPriceQuantity;
 	private double specialPrice;
+	
 	
 	public Product(String id) {
 		this(id, 0.0);
 	}
 
 	public Product(String id, double unitPrice) {
+		this.price = new Price();
 		this.id = id;
-		this.unitPrice = unitPrice;
+		price.setUnitPrice(unitPrice);
 	}
 
 	public String getId() {
@@ -22,11 +25,11 @@ public class Product {
 	}
 
 	public double getUnitPrice() {
-		return unitPrice;
+		return price.getUnitPrice();
 	}
 
 	public void setUnitPrice(double unitPrice) {
-		this.unitPrice = unitPrice;
+		price.setUnitPrice(unitPrice);
 	}
 
 	public void setSpecialPriceQuantity(int specialPriceQuantity) {
