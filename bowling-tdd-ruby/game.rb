@@ -1,7 +1,6 @@
 class Game
   def initialize
-    @score = 0
-    @currentRoll = 0;
+    @currentRoll = 0
     @rolls = Array.new(21, 0)
   end
 
@@ -31,6 +30,9 @@ class Game
     score
   end
 
+  
+  private
+  
   def is_strike(first_ball_in_frame)
     @rolls[first_ball_in_frame] == 10
   end
