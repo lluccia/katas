@@ -2,8 +2,8 @@ package dev.conca.rps;
 
 public class RandomChoiceStrategy implements ChoiceStrategy {
 
-	public Choice choose() {
-		Choice choice = null;
+    public Choice choose() {
+        Choice choice = null;
         int c = (int)(Math.random()*3);
         switch(c) {
             case 0:
@@ -17,6 +17,6 @@ public class RandomChoiceStrategy implements ChoiceStrategy {
                 break;
         }
         return choice;
-	}
+    }
 
 }

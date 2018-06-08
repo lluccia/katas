@@ -11,13 +11,13 @@ import java.util.List;
  *
  */
 public class Solution1 {
-	
-	private static PrimeFactorsCalculator PRIME_FACTORS_CALCULATOR = new PrimeFactorsCalculator();
-	
-	public static void main(String[] args) {
-		List<Long> primeFactors = PRIME_FACTORS_CALCULATOR.decompose(600851475143L);
-		
-		System.out.println("Max prime factor = " + primeFactors.get(primeFactors.size()-1));
-	}
+    
+    private static PrimeFactorsCalculator PRIME_FACTORS_CALCULATOR = new PrimeFactorsCalculator();
+    
+    public static void main(String[] args) {
+        List<Long> primeFactors = PRIME_FACTORS_CALCULATOR.decompose(600851475143L);
+        
+        System.out.println("Max prime factor = " + primeFactors.get(primeFactors.size()-1));
+    }
 
 }

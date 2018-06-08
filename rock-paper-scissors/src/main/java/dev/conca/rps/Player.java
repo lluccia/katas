@@ -1,25 +1,25 @@
 package dev.conca.rps;
 
 public class Player {
-	
+    
     int wins;
-	protected Choice choice;
-	private String name;
-	
-	private ChoiceStrategy choiceStrategy;
-	
-	public Player(String name) {
-		this.name = name;
-		this.setChoiceStrategy(new RandomChoiceStrategy());
-	}
-	
+    protected Choice choice;
+    private String name;
+    
+    private ChoiceStrategy choiceStrategy;
+    
+    public Player(String name) {
+        this.name = name;
+        this.setChoiceStrategy(new RandomChoiceStrategy());
+    }
+    
     public Choice choose() {
-    	choice = choiceStrategy.choose();
-    	return choice;
+        choice = choiceStrategy.choose();
+        return choice;
     }
 
     public void addWin() {
-    	wins++;
+        wins++;
     }
     
     public int getWins() {
@@ -27,18 +27,18 @@ public class Player {
     }
     
     public Choice getChoice() {
-    	return choice;
+        return choice;
     }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public ChoiceStrategy getChoiceStrategy() {
-		return choiceStrategy;
-	}
+    public ChoiceStrategy getChoiceStrategy() {
+        return choiceStrategy;
+    }
 
-	public void setChoiceStrategy(ChoiceStrategy choiceStrategy) {
-		this.choiceStrategy = choiceStrategy;
-	}
+    public void setChoiceStrategy(ChoiceStrategy choiceStrategy) {
+        this.choiceStrategy = choiceStrategy;
+    }
 }

@@ -11,19 +11,19 @@ package problem2;
  *
  */
 public class Solution1 {
-	
-	private static final FibonacciCalculator FIBONACCI_CALCULATOR = new FibonacciCalculator();
-	private static final Integer MAX_SEQUENCE_VALUE = 4_000_000;
-	
-	public static void main(String[] args) {
-		Long sum = 0L;
-		
-		for (int i = 0; i <= MAX_SEQUENCE_VALUE; i = FIBONACCI_CALCULATOR.getNext()) {
-			if (i % 2 == 0) {
-				sum += i;
-			}
-		}
-		
-		System.out.println("Sum = " + sum);
-	}
+    
+    private static final FibonacciCalculator FIBONACCI_CALCULATOR = new FibonacciCalculator();
+    private static final Integer MAX_SEQUENCE_VALUE = 4_000_000;
+    
+    public static void main(String[] args) {
+        Long sum = 0L;
+        
+        for (int i = 0; i <= MAX_SEQUENCE_VALUE; i = FIBONACCI_CALCULATOR.getNext()) {
+            if (i % 2 == 0) {
+                sum += i;
+            }
+        }
+        
+        System.out.println("Sum = " + sum);
+    }
 }
